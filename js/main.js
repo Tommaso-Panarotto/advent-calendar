@@ -127,7 +127,8 @@ const source = [
         "url": "images/dance.gif"
     }
 ];
-
+//create session for opened box
+const OpenBoxes = JSON.stringify(sessionStorage.getItem('openBoxes')) || [];
 //Get element from the DOM
 const advent = document.getElementById("advent");
 
@@ -136,7 +137,28 @@ function createAdvent() {
     for (let i = 1; i <= 25; i++) {
         const box = document.createElement('div');
         box.classList.add('box');
-        box.innerText = i;
+
+        if (i === 25) {
+            box.classList.add("last-box");
+        }
+
+        //create image
+        const image = document.createElement('img');
+        image.src = `images/icons/${source[i - 1].icon}.png`;
+        image.alt = `${source[i - 1].icon}`;
+
+        //create number element
+        const number = document.createElement('div');
+        number.innerText = i;
+
+        box.appendChild(image);
+        box.appendChild(number);
+
+        box.addEventListener('click', function () {
+            //add class opened-box and remove class box
+            box.classList.add('opened-box');
+            box.classList.remove('box');
+        })
 
         advent.appendChild(box);
     }
