@@ -54,7 +54,8 @@ h1 {
     cursor: pointer;
 }
 
-.box>div {
+.box>div,
+.opened-box>div {
     font-size: 45px;
     font-weight: bold;
 }
@@ -69,4 +70,9 @@ h1 {
     cursor: default;
     background-color: transparent;
     opacity: 0.5;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    height: 130px;
+    width: 130px;
 }
