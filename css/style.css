@@ -2,4 +2,33 @@
 body {
     background-color: #100645;
     font-family: "Livvic", serif;
+    color: white;
+}
+
+header {
+    padding: 0 12px;
+    padding-top: 80px;
+    background-color: #2D28EB;
+    border-radius: 0 0 30px 30px;
+}
+
+h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    font-weight: 600;
+}
+
+
+/*header*/
+.col-12 {
+    text-align: center;
+    height: 310px;
+    border-radius: 0 0 30px 30px;
+    background-image: url('../images/header-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    position: relative;
 }
