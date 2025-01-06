@@ -127,3 +127,20 @@ const source = [
         "url": "images/dance.gif"
     }
 ];
+
+//Get element from the DOM
+const advent = document.getElementById("advent");
+
+//function to create advent calendar
+function createAdvent() {
+    for (let i = 1; i <= 25; i++) {
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.innerText = i;
+
+        advent.appendChild(box);
+    }
+}
+
+createAdvent()
+
