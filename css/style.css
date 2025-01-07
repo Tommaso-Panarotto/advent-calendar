@@ -85,4 +85,25 @@ h1 {
     width: 100vw;
     align-items: center;
     justify-content: center;
+    background-color: rgba(16, 6, 69, 0.7);
+}
+
+#overlay .modal-message {
+    background-color: #E78AB6;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    justify-content: center;
+}
+
+#btn-modal {
+    background-color: #2D35F3;
+    border: 0;
+    padding: 5px 10px;
+    color: white;
+    font-size: 20px;
 }
