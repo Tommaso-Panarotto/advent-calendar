@@ -131,9 +131,40 @@ const source = [
 const OpenBoxes = JSON.parse(sessionStorage.getItem('openBoxes')) || [];
 //Get element from the DOM
 const advent = document.getElementById("advent");
+const modalBody = document.getElementById("modal-body");
+const overlay = document.getElementById("overlay");
+const closeModalButton = document.getElementById("btn-modal");
 
-//function to create advent calendar
+
+//function to show the modal
+function showModal(i) {
+    //clean the message
+    modalBody.innerHTML = "";
+    //get the corresponding message from the source
+    const message = source[i];
+
+    //control if its an image or a text
+    if (message.type === "text") {
+        modalBody.innerHTML = message.text;
+    } else {
+        //create element img
+        const gif = document.createElement('img');
+        //set the src
+        gif.src = message.url;
+        //get the alt message and modify it
+        const alt = message.url;
+        gif.alt = alt.replace("images/", "");
+        //append the img elemnt in the modal body
+        modalBody.appendChild(gif);
+    }
+
+    //remove class d-none from the overlay
+    overlay.classList.remove("d-none");
+}
+
+//Monthe day for the calendar
 const month = 25;
+//function to create advent calendar
 function createAdvent() {
     for (let i = 1; i <= month; i++) {
 
@@ -161,7 +192,11 @@ function createAdvent() {
         box.appendChild(number);
 
         // event after click on the box
-        box.addEventListener('click', function () {
+        box.addEventListener('click', () => {
+            console.log("click box", i);
+            //show the modal
+            showModal(i - 1);
+
             //add class opened-box and remove class box
             box.classList.add('opened-box');
             box.classList.remove('box');
