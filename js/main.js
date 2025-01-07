@@ -128,18 +128,23 @@ const source = [
     }
 ];
 //create session for opened box
-const OpenBoxes = sessionStorage.getItem('openBoxes') || [];
+const OpenBoxes = JSON.parse(sessionStorage.getItem('openBoxes')) || [];
 //Get element from the DOM
 const advent = document.getElementById("advent");
 
 //function to create advent calendar
+const month = 25;
 function createAdvent() {
-    for (let i = 1; i <= 25; i++) {
+    for (let i = 1; i <= month; i++) {
 
+        //create the box
         const box = document.createElement('div');
-        box.classList.add('box');
 
-        if (i === 25) {
+        //control if some box is already open
+        OpenBoxes.includes(i) ? box.classList.add('opened-box') : box.classList.add('box');
+
+        //add style for the last box
+        if (i === month) {
             box.classList.add("last-box");
         }
 
@@ -155,6 +160,7 @@ function createAdvent() {
         box.appendChild(image);
         box.appendChild(number);
 
+        // event after click on the box
         box.addEventListener('click', function () {
             //add class opened-box and remove class box
             box.classList.add('opened-box');
@@ -173,5 +179,6 @@ function createAdvent() {
     }
 }
 
+//create advent calendar
 createAdvent()
 
