@@ -242,6 +242,8 @@ resetButton.addEventListener("click", function () {
     sessionStorage.removeItem("openBoxes");
     //clean openBoxes
     OpenBoxes = [];
+    //add class d-none to reset button
+    resetButton.classList.add("d-none");
 })
 
 //create advent calendar
