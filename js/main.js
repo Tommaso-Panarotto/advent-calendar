@@ -128,12 +128,13 @@ const source = [
     }
 ];
 //create session for opened box
-const OpenBoxes = JSON.parse(sessionStorage.getItem('openBoxes')) || [];
+let OpenBoxes = JSON.parse(sessionStorage.getItem('openBoxes')) || [];
 //Get element from the DOM
 const advent = document.getElementById("advent");
 const modalBody = document.getElementById("modal-body");
 const overlay = document.getElementById("overlay");
 const closeModalButton = document.getElementById("btn-modal");
+const resetButton = document.getElementById("reset-button");
 
 
 //function to show the modal
@@ -154,6 +155,9 @@ function showModal(i) {
         //get the alt message and modify it
         const alt = message.url;
         gif.alt = alt.replace("images/", "");
+        //set the size of the img
+        gif.classList.add("img-fluid");
+        gif.style.width = "100%";
         //append the img elemnt in the modal body
         modalBody.appendChild(gif);
     }
@@ -193,7 +197,6 @@ function createAdvent() {
 
         // event after click on the box
         box.addEventListener('click', () => {
-            console.log("click box", i);
             //show the modal
             showModal(i - 1);
 
@@ -213,6 +216,33 @@ function createAdvent() {
         advent.appendChild(box);
     }
 }
+
+//show the reset button
+if (OpenBoxes.length > 0) {
+    resetButton.classList.remove("d-none");
+}
+
+
+closeModalButton.addEventListener("click", function () {
+    //add display none to overlay
+    overlay.classList.add("d-none");
+    //remove display none from reset button
+    resetButton.classList.remove("d-none");
+})
+
+resetButton.addEventListener("click", function () {
+    //get all box
+    const boxes = advent.querySelectorAll(':scope > div')
+    //remove class opened and add class box
+    for (let i = 0; i < OpenBoxes.length; i++) {
+        boxes[OpenBoxes[i] - 1].classList.add("box");
+        boxes[OpenBoxes[i] - 1].classList.remove("opened-box");
+    }
+    //remove open Boxes from the session
+    sessionStorage.removeItem("openBoxes");
+    //clean openBoxes
+    OpenBoxes = [];
+})
 
 //create advent calendar
 createAdvent()
